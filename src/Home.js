@@ -16,13 +16,13 @@ function Home() {
 
     return (
         <div>
-            <h1>Hi {authUser.firstname}! </h1>
+            <h1>Hi {authUser.username}! </h1>
             <p>You are logged in React 18 + Redux & JWT!!</p>
             <h3>Users from a secure api end point:</h3>
             { users.length &&
                 <ul>
                     { users.map(user =>
-                        <li key={user.id}>{user.firstname} {user.lastname}</li>
+                        <li key={user.id}>{user.email}</li>
                     )}
                 </ul>
             }

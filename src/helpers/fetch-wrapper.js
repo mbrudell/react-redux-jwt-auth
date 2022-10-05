@@ -9,7 +9,7 @@ export const fetchWrapper = {
 }
 
 function request(method) {
-    return (url, body) => {
+    return async (url, body) => {
         const requestOptions = { 
             method,
             headers: authHeader(url)
@@ -18,24 +18,24 @@ function request(method) {
             requestOptions.headers['Content-Type'] = 'application/json'
             requestOptions.body = JSON.stringify(body)
         }
-        return fetch(url, requestOptions).then(handleResponse)
+        const response = await fetch(url, requestOptions)
+        return handleResponse(response)
     }
 }
 
 function authHeader(url) {
     const token = authToken()
     const isLoggedIn = !!token
-    const isApiUrl = url.startsWith(REACT_APP_API_URL)
+    const isApiUrl = url.startsWith(process.env.REACT_APP_API_URL)
     if(isLoggedIn && isApiUrl) {
-        return { Authorization: `Bearer ${token} `}
+        return {'x-access-token': `${token}`}
     } else {
         return {}
     }
-
 }
 
 function authToken() {
-    return store.getState().auth.user?.token
+    return store.getState().auth.user?.accessToken
 }
 
 function handleResponse(response) {

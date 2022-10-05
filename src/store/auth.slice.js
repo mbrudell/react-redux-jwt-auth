@@ -25,7 +25,7 @@ function createReducers() {
     return {
         logout
     }
-
+    
     function logout(state) {
         state.user = null
         localStorage.removeItem('user')
@@ -34,7 +34,7 @@ function createReducers() {
 }
 
 function createExtraActions() {
-    const baseUrl = `${process.env.REACT_APP_API_URL}/users`
+    const baseUrl = `${process.env.REACT_APP_API_URL}/api/auth`
 
     return {
         login: login()
@@ -43,7 +43,7 @@ function createExtraActions() {
     function login() {
         return createAsyncThunk(
             `${name}/login`,
-            async ({ username, password }) => await fetchWrapper.post(`${baseUrl}/authenticate`, {username, password})
+            async ({ username, password }) => await fetchWrapper.post(`${baseUrl}/signin`, {username, password})
         )
     }
 }

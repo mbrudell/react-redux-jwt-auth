@@ -11,12 +11,11 @@ function Nav() {
     const logout = () => dispatch(authActions.logout())
 
     if (!authUser) return null;
-
     return (
         <nav className="navbar navbar-expand navbar-dark bg-dark">
             <div className="navbar-nav">
                 <NavLink to="/" className="nav-item nav-link">Home</NavLink>
-                <buttton onClick={logout} className="btn btn-link nav-item nav-link">Logout</buttton>
+                <button onClick={logout} className="btn btn-link nav-item nav-link">Logout</button>
             </div>
         </nav>
     )

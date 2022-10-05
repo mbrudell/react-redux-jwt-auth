@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
+// import * as dotenv from 'dotenv'
 
 import { history } from './helpers/history'
 import { Nav } from './components/Nav'
@@ -9,6 +10,9 @@ import { Login } from './Login'
 export { App }
 
 function App() {
+
+  // dotenv.config()
+
   history.navigate = useNavigate()
   history.location = useLocation()
 
